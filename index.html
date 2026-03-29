@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodir & Zukhra - Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
+            --dusty-rose: #C9A9A6;
+            --dusty-rose-dark: #A67E7A;
             --sage-green: #9CAF88;
-            --sage-light: #B8C4A8;
-            --sage-dark: #7A8F6A;
-            --dusty-rose: #D4A5A5;
-            --rose-light: #E8C4C4;
-            --rose-dark: #B88A8A;
-            --cream: #FAF7F2;
-            --white: #FFFFFF;
-            --charcoal: #4A4A4A;
-            --light-gray: #F5F5F5;
+            --sage-green-dark: #7A8F6A;
+            --soft-cream: rgba(255, 253, 245, 0.6);
+            --cream-solid: #FFFDF5;
+            --charcoal: #3D3D3D;
+            --charcoal-light: #5A5A5A;
         }
 
         * {
@@ -30,10 +30,31 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Lato', sans-serif;
             color: var(--charcoal);
-            background-color: var(--cream);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--soft-cream);
+            z-index: -1;
         }
 
         /* Hero Section */
@@ -44,49 +65,40 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--rose-light) 100%);
             padding: 2rem;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
+            max-width: 800px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--charcoal);
+            color: var(--charcoal-light);
             margin-bottom: 1.5rem;
-            opacity: 0.8;
         }
 
         .hero-names {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 500;
             color: var(--charcoal);
             margin-bottom: 0.5rem;
             line-height: 1.1;
@@ -94,26 +106,31 @@
 
         .hero-names span {
             font-style: italic;
-            color: var(--sage-dark);
+            color: var(--dusty-rose-dark);
         }
 
-        .hero-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            color: var(--charcoal);
-            margin-top: 1.5rem;
-            opacity: 0.9;
+        .hero-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--sage-green), var(--dusty-rose));
+            margin: 2rem auto;
+        }
+
+        .hero-details {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal-light);
+            margin-bottom: 0.5rem;
         }
 
         .hero-location {
-            font-size: 1rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            color: var(--charcoal);
-            margin-top: 0.5rem;
-            opacity: 0.8;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--sage-green-dark);
+            margin-top: 1rem;
         }
 
         .scroll-indicator {
@@ -125,10 +142,10 @@
         }
 
         .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             stroke: var(--charcoal);
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         @keyframes bounce {
@@ -145,296 +162,236 @@
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
             text-align: center;
             margin-bottom: 3rem;
             color: var(--charcoal);
-            position: relative;
         }
 
-        .section-title::after {
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
             content: '';
-            display: block;
             width: 60px;
             height: 1px;
-            background: linear-gradient(90deg, var(--sage-green), var(--dusty-rose));
-            margin: 1rem auto 0;
+            background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
         }
 
-        /* Countdown Section */
-        .countdown-section {
-            background-color: var(--white);
-            border-radius: 20px;
-            margin: 3rem auto;
-            padding: 4rem 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        .section-divider svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--dusty-rose);
         }
 
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 300;
-            color: var(--sage-dark);
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--charcoal);
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
-
-        .countdown-divider {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            color: var(--dusty-rose);
-            align-self: flex-start;
-            opacity: 0.5;
-        }
-
-        /* Schedule Section */
-        .schedule-section {
-            background-color: transparent;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--sage-green), var(--dusty-rose));
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 3rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -2rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--white);
-            border: 2px solid var(--sage-green);
-            border-radius: 50%;
-            transform: translateX(-5px);
-        }
-
-        .timeline-time {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: var(--sage-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-event {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-description {
-            font-size: 0.95rem;
-            color: var(--charcoal);
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        /* Location Info */
-        .location-section {
-            background: linear-gradient(135deg, var(--rose-light) 0%, var(--sage-light) 100%);
+        /* Details Section */
+        .details-section {
+            background-color: var(--cream-solid);
             border-radius: 20px;
             padding: 4rem 2rem;
-            text-align: center;
             margin: 3rem auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
         }
 
-        .location-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.5rem;
-            background: var(--white);
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--sage-green), var(--sage-green-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        .location-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--sage-dark);
+        .detail-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: white;
+            fill: none;
         }
 
-        .location-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 300;
+        .detail-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--charcoal-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--charcoal);
+        }
+
+        .detail-note {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        /* Photos Section */
+        .photos-section {
+            text-align: center;
+        }
+
+        .photos-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .photo-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-circle:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Map Section */
+        .map-section {
+            background-color: var(--cream-solid);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 3rem auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--sage-green-light, #E8EDE4), var(--dusty-rose-light, #F5E8E6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: var(--charcoal-light);
+        }
+
+        .map-placeholder svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--sage-green-dark);
             margin-bottom: 1rem;
         }
 
-        .location-details {
+        .map-placeholder p {
             font-size: 1rem;
-            opacity: 0.8;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .location-note {
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0.7;
-            margin-top: 1rem;
         }
 
         /* RSVP Section */
         .rsvp-section {
-            background-color: var(--white);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            margin-bottom: 3rem;
+            text-align: center;
+            padding: 5rem 2rem;
         }
 
-        .rsvp-form {
-            max-width: 500px;
+        .rsvp-content {
+            background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--sage-green) 100%);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            color: white;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .rsvp-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .form-label {
-            display: block;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        .rsvp-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .rsvp-deadline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .btn-rsvp {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
             color: var(--charcoal);
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 1px solid #E0E0E0;
-            border-radius: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: var(--charcoal);
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--sage-green);
-            box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .radio-item input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--sage-green);
-            cursor: pointer;
-        }
-
-        .radio-item label {
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1.2rem 2rem;
-            background: linear-gradient(135deg, var(--sage-green) 0%, var(--sage-dark) 100%);
-            color: var(--white);
             border: none;
-            border-radius: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(156, 175, 136, 0.4);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
+        .btn-rsvp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            background-color: var(--light-gray);
+            background-color: var(--cream-solid);
         }
 
         .footer-names {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-style: italic;
             color: var(--charcoal);
@@ -443,32 +400,8 @@
 
         .footer-text {
             font-size: 0.85rem;
-            opacity: 0.6;
-        }
-
-        /* Decorative Elements */
-        .floral-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin: 3rem 0;
-        }
-
-        .floral-divider::before,
-        .floral-divider::after {
-            content: '';
-            flex: 1;
-            max-width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
-        }
-
-        .floral-divider svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--dusty-rose);
-            fill: none;
+            color: var(--charcoal-light);
+            letter-spacing: 0.1em;
         }
 
         /* Responsive */
@@ -477,85 +410,67 @@
                 font-size: 2.5rem;
             }
 
-            .countdown {
-                gap: 1rem;
+            .hero-subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 0.3em;
             }
 
-            .countdown-number {
-                font-size: 2.5rem;
+            .details-grid {
+                gap: 2rem;
             }
 
-            .countdown-divider {
-                display: none;
+            .photo-circle {
+                width: 140px;
+                height: 140px;
             }
 
-            .timeline {
-                padding-left: 1.5rem;
-            }
-
-            .timeline-item {
-                padding-left: 1rem;
+            .map-container {
+                height: 280px;
             }
 
             section {
                 padding: 3rem 1.5rem;
             }
 
-            .countdown-section,
-            .location-section,
-            .rsvp-section {
+            .details-section,
+            .map-section {
                 margin: 2rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .rsvp-content {
                 padding: 3rem 1.5rem;
             }
         }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--rose-light) 100%);
-            border-radius: 15px;
-            margin-top: 1rem;
-        }
+        @media (max-width: 480px) {
+            .photo-circle {
+                width: 120px;
+                height: 120px;
+            }
 
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .success-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .success-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--sage-dark);
+            .photos-grid {
+                gap: 1rem;
+            }
         }
     </style>
 <base target="_blank">
 </head>
 <body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="waves.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <p class="hero-subtitle">Together with their families</p>
             <h1 class="hero-names">Nodir <span>&</span> Zukhra</h1>
-            <p class="hero-date">July 3, 2026</p>
-            <p class="hero-location">ANTALYA, TURKEY</p>
+            <div class="hero-divider"></div>
+            <p class="hero-details">July 3, 2026</p>
+            <p class="hero-location">Antalya, Turkey</p>
         </div>
         <div class="scroll-indicator">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -564,168 +479,106 @@
         </div>
     </section>
 
-    <!-- Countdown Section -->
-    <section class="countdown-section">
-        <h2 class="section-title">Counting Down</h2>
-        <div class="countdown" id="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Days</div>
-            </div>
-            <div class="countdown-divider">:</div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
-            </div>
-            <div class="countdown-divider">:</div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-divider">:</div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
-            </div>
-        </div>
-    </section>
-
-    <div class="floral-divider">
-        <svg viewBox="0 0 24 24" stroke-width="1.5">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-            <circle cx="12" cy="12" r="3"/>
-        </svg>
-    </div>
-
-    <!-- Schedule Section -->
-    <section class="schedule-section">
-        <h2 class="section-title">Wedding Day</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">3:00 PM</div>
-                <div class="timeline-event">Guest Arrival</div>
-                <div class="timeline-description">Welcome aboard! Please arrive at the dock for boarding.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">4:00 PM</div>
-                <div class="timeline-event">Wedding Ceremony</div>
-                <div class="timeline-description">Join us as we exchange our vows on the deck of the yacht.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">5:00 PM</div>
-                <div class="timeline-event">Cocktail Hour</div>
-                <div class="timeline-description">Enjoy refreshments and hors d'oeuvres while we take photos.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">6:30 PM</div>
-                <div class="timeline-event">Dinner Reception</div>
-                <div class="timeline-description">A delightful dinner under the Mediterranean sunset.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">8:30 PM</div>
-                <div class="timeline-event">Dancing & Celebration</div>
-                <div class="timeline-description">Let's dance the night away under the stars!</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-time">11:00 PM</div>
-                <div class="timeline-event">Farewell</div>
-                <div class="timeline-description">Thank you for celebrating with us!</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section class="location-section">
-        <div class="location-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+    <!-- Details Section -->
+    <section class="details-section">
+        <h2 class="section-title">The Celebration</h2>
+        <div class="section-divider">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
             </svg>
         </div>
-        <h2 class="location-title">The Venue</h2>
-        <p class="location-details">
-            A private yacht in the beautiful waters of Antalya, Turkey<br>
-            <strong>Dock Location:</strong> To be specified
-        </p>
-        <p class="location-note">
-            Detailed dock information and directions will be shared with confirmed guests closer to the date.
-        </p>
+        <div class="details-grid">
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+                <p class="detail-label">When</p>
+                <p class="detail-value">July 3, 2026</p>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <p class="detail-label">Time</p>
+                <p class="detail-value">6:00 PM</p>
+                <p class="detail-note">Celebrations Begin</p>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <p class="detail-label">Where</p>
+                <p class="detail-value">Antalya, Turkey</p>
+                <p class="detail-note">On a Yacht</p>
+            </div>
+        </div>
     </section>
 
-    <div class="floral-divider">
-        <svg viewBox="0 0 24 24" stroke-width="1.5">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-            <circle cx="12" cy="12" r="3"/>
-        </svg>
-    </div>
+    <!-- Photos Section -->
+    <section class="photos-section">
+        <h2 class="section-title">Our Moments</h2>
+        <div class="section-divider">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
+            </svg>
+        </div>
+        <div class="photos-grid">
+            <div class="photo-circle">
+                <img src="photo1.jpg" alt="Photo 1">
+            </div>
+            <div class="photo-circle">
+                <img src="photo2.jpg" alt="Photo 2">
+            </div>
+            <div class="photo-circle">
+                <img src="photo3.jpg" alt="Photo 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2 class="section-title">Location</h2>
+        <div class="section-divider">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
+            </svg>
+        </div>
+        <p style="color: var(--charcoal-light); margin-bottom: 1rem;">Antalya, Turkey — On a Yacht</p>
+        <p style="color: var(--dusty-rose-dark); font-style: italic; margin-bottom: 2rem;">Dock to be specified</p>
+        <div class="map-container">
+            <!-- Google Maps Embed Placeholder -->
+            <div class="map-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <p>Google Maps Embed</p>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;">Antalya, Turkey</p>
+            </div>
+        </div>
+    </section>
 
     <!-- RSVP Section -->
     <section class="rsvp-section">
-        <h2 class="section-title">RSVP</h2>
-        <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;">Please respond by June 1, 2026</p>
-        
-        <form class="rsvp-form" id="rsvpForm">
-            <div class="form-group">
-                <label class="form-label" for="name">Full Name(s)</label>
-                <input type="text" class="form-input" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" class="form-input" id="email" name="email" placeholder="your@email.com" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Will you be attending?</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="attending-yes" name="attending" value="yes" required>
-                        <label for="attending-yes">Joyfully Accept</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="attending-no" name="attending" value="no" required>
-                        <label for="attending-no">Regretfully Decline</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="guests">Number of Guests</label>
-                <select class="form-select" id="guests" name="guests" required>
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="dietary">Dietary Restrictions (Optional)</label>
-                <textarea class="form-textarea" id="dietary" name="dietary" placeholder="Please let us know of any allergies or dietary requirements..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="message">Message for the Couple (Optional)</label>
-                <textarea class="form-textarea" id="message" name="message" placeholder="Share your well wishes..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-submit">Send RSVP</button>
-        </form>
-
-        <div class="success-message" id="successMessage">
-            <div class="success-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>
-            </div>
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem;">Thank You!</h3>
-            <p>Your RSVP has been received. We can't wait to celebrate with you!</p>
+        <div class="rsvp-content">
+            <h2 class="rsvp-title">Join Us</h2>
+            <p class="rsvp-text">We would be honored by your presence</p>
+            <p class="rsvp-deadline">Kindly reply by May 1</p>
+            <a href="#" class="btn-rsvp">RSVP</a>
         </div>
     </section>
 
@@ -734,48 +587,5 @@
         <p class="footer-names">Nodir & Zukhra</p>
         <p class="footer-text">July 3, 2026 • Antalya, Turkey</p>
     </footer>
-
-    <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const weddingDate = new Date('July 3, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // RSVP Form Handler
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real implementation, you would send the form data to a server here
-            // For now, we'll just show the success message
-            
-            document.getElementById('rsvpForm').style.display = 'none';
-            document.getElementById('successMessage').classList.add('show');
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>

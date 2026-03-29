@@ -13,7 +13,7 @@
             --dusty-rose-dark: #A67E7A;
             --sage-green: #9CAF88;
             --sage-green-dark: #7A8F6A;
-            --soft-cream: rgba(255, 253, 245, 0.6);
+            --soft-cream: rgba(255, 253, 245, 0.5); /* Slightly clearer for visibility */
             --cream-solid: #FFFDF5;
             --charcoal: #3D3D3D;
             --charcoal-light: #5A5A5A;
@@ -34,16 +34,30 @@
             color: var(--charcoal);
             line-height: 1.6;
             overflow-x: hidden;
+            background-color: var(--cream-solid); /* Fallback if video fails */
         }
 
-        /* Video Background */
-        .video-background {
+        /* Video Background Fixes */
+        .video-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
+            overflow: hidden;
+            background: black; /* Prevents white flash */
+        }
+
+        .video-background {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             object-fit: cover;
         }
 
@@ -55,6 +69,7 @@
             height: 100%;
             background-color: var(--soft-cream);
             z-index: -1;
+            pointer-events: none;
         }
 
         /* Hero Section */
@@ -75,20 +90,12 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-subtitle {
-            font-family: 'Lato', sans-serif;
             font-size: 0.85rem;
-            font-weight: 400;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--charcoal-light);
@@ -117,11 +124,9 @@
         }
 
         .hero-details {
-            font-family: 'Lato', sans-serif;
             font-size: 1rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--charcoal-light);
             margin-bottom: 0.5rem;
         }
 
@@ -130,66 +135,6 @@
             font-size: 1.3rem;
             font-style: italic;
             color: var(--sage-green-dark);
-            margin-top: 1rem;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--charcoal);
-            opacity: 0.5;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 500;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--charcoal);
-        }
-
-        .section-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .section-divider::before,
-        .section-divider::after {
-            content: '';
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
-        }
-
-        .section-divider svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--dusty-rose);
         }
 
         /* Details Section */
@@ -198,6 +143,7 @@
             border-radius: 20px;
             padding: 4rem 2rem;
             margin: 3rem auto;
+            max-width: 900px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             text-align: center;
         }
@@ -209,9 +155,7 @@
             margin-top: 2rem;
         }
 
-        .detail-item {
-            text-align: center;
-        }
+        .detail-item { text-align: center; }
 
         .detail-icon {
             width: 50px;
@@ -224,46 +168,17 @@
             justify-content: center;
         }
 
-        .detail-icon svg {
-            width: 22px;
-            height: 22px;
-            stroke: white;
-            fill: none;
-        }
+        .detail-icon svg { width: 22px; height: 22px; stroke: white; fill: none; }
 
-        .detail-label {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--charcoal-light);
-            margin-bottom: 0.5rem;
-        }
+        .detail-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
 
-        .detail-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--charcoal);
-        }
-
-        .detail-note {
-            font-size: 0.9rem;
-            color: var(--charcoal-light);
-            margin-top: 0.3rem;
-            font-style: italic;
-        }
-
-        /* Photos Section */
-        .photos-section {
-            text-align: center;
-        }
-
+        /* Photo Circles */
         .photos-grid {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin: 3rem 0;
         }
 
         .photo-circle {
@@ -273,91 +188,19 @@
             overflow: hidden;
             border: 4px solid white;
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .photo-circle:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-        }
+        .photo-circle img { width: 100%; height: 100%; object-fit: cover; }
 
-        .photo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Map Section */
-        .map-section {
-            background-color: var(--cream-solid);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            margin: 3rem auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 350px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 2rem;
-            background: linear-gradient(135deg, var(--sage-green-light, #E8EDE4), var(--dusty-rose-light, #F5E8E6));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .map-placeholder {
-            text-align: center;
-            color: var(--charcoal-light);
-        }
-
-        .map-placeholder svg {
-            width: 48px;
-            height: 48px;
-            stroke: var(--sage-green-dark);
-            margin-bottom: 1rem;
-        }
-
-        .map-placeholder p {
-            font-size: 1rem;
-        }
-
-        /* RSVP Section */
-        .rsvp-section {
-            text-align: center;
-            padding: 5rem 2rem;
-        }
-
+        /* RSVP Button */
         .rsvp-content {
             background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--sage-green) 100%);
             border-radius: 20px;
             padding: 4rem 2rem;
             color: white;
             max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .rsvp-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .rsvp-text {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .rsvp-deadline {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 2rem;
+            margin: 3rem auto;
+            text-align: center;
         }
 
         .btn-rsvp {
@@ -365,105 +208,34 @@
             padding: 1rem 3rem;
             background: white;
             color: var(--charcoal);
-            border: none;
             border-radius: 50px;
-            font-family: 'Lato', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
             text-transform: uppercase;
             text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            letter-spacing: 0.2em;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: 0.3s;
         }
 
-        .btn-rsvp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-        }
+        .btn-rsvp:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            background-color: var(--cream-solid);
-        }
+        footer { text-align: center; padding: 3rem 0; background: var(--cream-solid); }
 
-        .footer-names {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--charcoal);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-text {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-            letter-spacing: 0.1em;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-names {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.7rem;
-                letter-spacing: 0.3em;
-            }
-
-            .details-grid {
-                gap: 2rem;
-            }
-
-            .photo-circle {
-                width: 140px;
-                height: 140px;
-            }
-
-            .map-container {
-                height: 280px;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            .details-section,
-            .map-section {
-                margin: 2rem 1rem;
-                padding: 3rem 1.5rem;
-            }
-
-            .rsvp-content {
-                padding: 3rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .photo-circle {
-                width: 120px;
-                height: 120px;
-            }
-
-            .photos-grid {
-                gap: 1rem;
-            }
+            .hero-names { font-size: 3rem; }
+            .photo-circle { width: 140px; height: 140px; }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
-    <!-- Video Background -->
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="waves.mp4" type="video/mp4">
-    </video>
+
+    <div class="video-container">
+        <video class="video-background" autoplay muted loop playsinline poster="photo1.jpg">
+            <source src="waves.mp4" type="video/mp4">
+        </video>
+    </div>
     <div class="video-overlay"></div>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <p class="hero-subtitle">Together with their families</p>
@@ -472,120 +244,52 @@
             <p class="hero-details">July 3, 2026</p>
             <p class="hero-location">Antalya, Turkey</p>
         </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
-        </div>
     </section>
 
-    <!-- Details Section -->
     <section class="details-section">
-        <h2 class="section-title">The Celebration</h2>
-        <div class="section-divider">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="4"/>
-            </svg>
-        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem;">The Celebration</h2>
         <div class="details-grid">
             <div class="detail-item">
                 <div class="detail-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 </div>
-                <p class="detail-label">When</p>
                 <p class="detail-value">July 3, 2026</p>
             </div>
             <div class="detail-item">
                 <div class="detail-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
-                <p class="detail-label">Time</p>
                 <p class="detail-value">6:00 PM</p>
-                <p class="detail-note">Celebrations Begin</p>
             </div>
             <div class="detail-item">
                 <div class="detail-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
-                <p class="detail-label">Where</p>
-                <p class="detail-value">Antalya, Turkey</p>
-                <p class="detail-note">On a Yacht</p>
+                <p class="detail-value">Antalya Yacht</p>
             </div>
         </div>
     </section>
 
-    <!-- Photos Section -->
-    <section class="photos-section">
-        <h2 class="section-title">Our Moments</h2>
-        <div class="section-divider">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="4"/>
-            </svg>
-        </div>
+    <section style="text-align: center;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem;">Our Moments</h2>
         <div class="photos-grid">
-            <div class="photo-circle">
-                <img src="photo1.jpg" alt="Photo 1">
-            </div>
-            <div class="photo-circle">
-                <img src="photo2.jpg" alt="Photo 2">
-            </div>
-            <div class="photo-circle">
-                <img src="photo3.jpg" alt="Photo 3">
-            </div>
+            <div class="photo-circle"><img src="photo1.jpg" alt="Photo 1"></div>
+            <div class="photo-circle"><img src="photo2.jpg" alt="Photo 2"></div>
+            <div class="photo-circle"><img src="photo3.jpg" alt="Photo 3"></div>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section">
-        <h2 class="section-title">Location</h2>
-        <div class="section-divider">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="4"/>
-            </svg>
-        </div>
-        <p style="color: var(--charcoal-light); margin-bottom: 1rem;">Antalya, Turkey — On a Yacht</p>
-        <p style="color: var(--dusty-rose-dark); font-style: italic; margin-bottom: 2rem;">Dock to be specified</p>
-        <div class="map-container">
-            <!-- Google Maps Embed Placeholder -->
-            <div class="map-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                    <circle cx="12" cy="10" r="3"/>
-                </svg>
-                <p>Google Maps Embed</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;">Antalya, Turkey</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
     <section class="rsvp-section">
         <div class="rsvp-content">
-            <h2 class="rsvp-title">Join Us</h2>
-            <p class="rsvp-text">We would be honored by your presence</p>
-            <p class="rsvp-deadline">Kindly reply by May 1</p>
-            <a href="#" class="btn-rsvp">RSVP</a>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem;">Join Us</h2>
+            <p style="margin-top: 1rem; font-style: italic;">Kindly reply by May 1</p>
+            <a href="YOUR_GOOGLE_FORM_URL" target="_blank" class="btn-rsvp">RSVP Online</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p class="footer-names">Nodir & Zukhra</p>
-        <p class="footer-text">July 3, 2026 • Antalya, Turkey</p>
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem;">Nodir & Zukhra</p>
     </footer>
+
 </body>
 </html>

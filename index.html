@@ -18,11 +18,12 @@
             --light-blue: #B6D5ED;
             --dark-grey: #A6A6A6;
             --light-grey: #D9D9D9;
+            --royal-blue: #1E3A8A; /* Elegant royal blue */
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
             
             /* Reduced opacity overlay so the video is more visible */
-            --bg-overlay: rgba(255, 253, 245, 0.15); 
+            --bg-overlay: rgba(255, 253, 245, 0.25); 
         }
 
         /* --- Global Reset & Base Styles --- */
@@ -35,24 +36,11 @@
         body {
             font-family: var(--font-body);
             font-weight: 400;
-            background-color: #000; /* Fallback */
+            background-color: #FFFDF5; /* Fallback updated */
+            color: var(--royal-blue);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Text Outline Utility (White text with black outline) --- */
-        .outlined-text {
-            color: #FFFFFF;
-            /* Creates a sharp black outline */
-            text-shadow: 
-                -1px -1px 0 #000,  
-                 1px -1px 0 #000,
-                -1px  1px 0 #000,
-                 1px  1px 0 #000,
-                 0px  4px 8px rgba(0,0,0,0.6); /* Adds a soft drop shadow for depth */
-            /* Webkit stroke for smoother rendering on supported browsers */
-            -webkit-text-stroke: 1px rgba(0,0,0,0.8);
         }
 
         h1, h2, h3, p, span, div {
@@ -193,18 +181,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.5);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.6);
             backdrop-filter: blur(5px);
         }
 
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: #FFFFFF;
-            filter: drop-shadow(1px 1px 1px #000);
+            fill: var(--royal-blue);
             margin-bottom: 15px;
         }
 
@@ -288,27 +275,24 @@
 
         .btn {
             display: inline-block;
-            background-color: rgba(75, 89, 112, 0.85); /* Slightly transparent primary blue */
+            background-color: var(--royal-blue);
             color: #FFFFFF;
             padding: 18px 50px;
             text-decoration: none;
             font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            border: 2px solid #FFFFFF;
+            border: 2px solid var(--royal-blue);
             border-radius: 4px;
             transition: all 0.3s ease;
             margin-top: 20px;
             font-weight: 700;
-            text-shadow: 1px 1px 2px #000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .btn:hover {
             background-color: #FFFFFF;
-            color: var(--dark-blue);
-            text-shadow: none;
-            -webkit-text-stroke: 0;
+            color: var(--royal-blue);
         }
 
         .deadline {
@@ -351,15 +335,15 @@
 
     <!-- Hero Section -->
     <section class="hero section-container">
-        <h2 class="fade-in-up italic outlined-text">Save the Date</h2>
-        <h1 class="fade-in-up delay-1 outlined-text">Nodir & Zukhra</h1>
-        <p class="fade-in-up delay-2 outlined-text">July 3, 2026</p>
-        <p class="fade-in-up delay-3 outlined-text" style="font-size: 1rem;">Antalya, Turkey</p>
+        <h2 class="fade-in-up italic">Save the Date</h2>
+        <h1 class="fade-in-up delay-1">Nodir & Zukhra</h1>
+        <p class="fade-in-up delay-2">July 3, 2026</p>
+        <p class="fade-in-up delay-3" style="font-size: 1rem;">Antalya, Turkey</p>
     </section>
 
     <!-- Our Moments Section (8 Photos) -->
     <section class="section-container">
-        <h2 class="section-title italic outlined-text">Our Moments</h2>
+        <h2 class="section-title italic">Our Moments</h2>
         <div class="gallery-grid">
             <!-- Replace photo1.jpg through photo8.jpg with your actual image filenames -->
             <img src="photo1.jpg" alt="Moment 1" class="gallery-item">
@@ -375,31 +359,31 @@
 
     <!-- Celebration Details Section -->
     <section class="section-container">
-        <h2 class="section-title italic outlined-text">The Celebration</h2>
+        <h2 class="section-title italic">The Celebration</h2>
         <div class="details-grid">
             
             <div class="detail-item">
                 <svg class="detail-icon" viewBox="0 0 24 24">
                     <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
                 </svg>
-                <div class="detail-label outlined-text">Date</div>
-                <div class="detail-text outlined-text">July 3, 2026</div>
+                <div class="detail-label">Date</div>
+                <div class="detail-text">July 3, 2026</div>
             </div>
 
             <div class="detail-item">
                 <svg class="detail-icon" viewBox="0 0 24 24">
                     <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                 </svg>
-                <div class="detail-label outlined-text">Time</div>
-                <div class="detail-text outlined-text">6:00 PM <br><span style="font-size: 0.9rem;" class="outlined-text">(Celebrations begin)</span></div>
+                <div class="detail-label">Time</div>
+                <div class="detail-text">6:00 PM <br><span style="font-size: 0.9rem;">(Celebrations begin)</span></div>
             </div>
 
             <div class="detail-item">
                 <svg class="detail-icon" viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
-                <div class="detail-label outlined-text">Where</div>
-                <div class="detail-text outlined-text">Antalya, Turkey <br><span style="font-size: 0.9rem;" class="outlined-text">(On a Yacht)</span></div>
+                <div class="detail-label">Where</div>
+                <div class="detail-text">Antalya, Turkey <br><span style="font-size: 0.9rem;">(On a Yacht)</span></div>
             </div>
 
         </div>
@@ -407,8 +391,8 @@
 
     <!-- Location / Map Section -->
     <section class="section-container">
-        <h2 class="section-title italic outlined-text">Location</h2>
-        <p class="detail-text outlined-text" style="margin-bottom: 15px;">Boarding at Antalya Yeni Liman (Balıkçı Barınağı)</p>
+        <h2 class="section-title italic">Location</h2>
+        <p class="detail-text" style="margin-bottom: 15px;">Boarding at Antalya Yeni Liman (Balıkçı Barınağı)</p>
         <div class="map-container">
             <!-- Google Maps Embed centered on Antalya Yeni Liman -->
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12765.41999903932!2d30.603387790514966!3d36.83155799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c391d1e4b3014d%3A0x6bba41a6b0dc1a7!2sAntalya%20Yeni%20Liman%20(Bal%C4%B1k%C3%A7%C4%B1%20Bar%C4%B1na%C4%9F%C4%B1)!5e0!3m2!1sen!2sus!4v1713456789012!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -417,40 +401,40 @@
 
     <!-- Dress Code Section -->
     <section class="section-container">
-        <h2 class="section-title italic outlined-text">Dress Code</h2>
-        <p class="dress-code-text outlined-text">Please join us in celebrating with a <span class="italic">Coastal Chic</span> attire.</p>
+        <h2 class="section-title italic">Dress Code</h2>
+        <p class="dress-code-text">Please join us in celebrating with a <span class="italic">Coastal Chic</span> attire.</p>
         
         <div class="palette-grid">
             <div class="swatch-container">
                 <div class="swatch c-dark-blue"></div>
-                <span class="swatch-hex outlined-text">#4B5970</span>
+                <span class="swatch-hex">#4B5970</span>
             </div>
             <div class="swatch-container">
                 <div class="swatch c-mid-blue"></div>
-                <span class="swatch-hex outlined-text">#8DACBF</span>
+                <span class="swatch-hex">#8DACBF</span>
             </div>
             <div class="swatch-container">
                 <div class="swatch c-light-blue"></div>
-                <span class="swatch-hex outlined-text">#B6D5ED</span>
+                <span class="swatch-hex">#B6D5ED</span>
             </div>
             <div class="swatch-container">
                 <div class="swatch c-dark-grey"></div>
-                <span class="swatch-hex outlined-text">#A6A6A6</span>
+                <span class="swatch-hex">#A6A6A6</span>
             </div>
             <div class="swatch-container">
                 <div class="swatch c-light-grey"></div>
-                <span class="swatch-hex outlined-text">#D9D9D9</span>
+                <span class="swatch-hex">#D9D9D9</span>
             </div>
         </div>
     </section>
 
     <!-- RSVP Section -->
     <section class="section-container rsvp-section">
-        <h2 class="section-title italic outlined-text">Join Us</h2>
+        <h2 class="section-title italic">Join Us</h2>
         <!-- Replace the href with your actual Google Form link -->
         <a href="https://forms.google.com/your-form-link-here" target="_blank" class="btn">RSVP</a>
         <br>
-        <p class="deadline outlined-text">Kindly reply by May 1.</p>
+        <p class="deadline">Kindly reply by May 1.</p>
     </section>
 
 </body>

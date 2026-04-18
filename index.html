@@ -13,6 +13,7 @@
     <style>
         /* --- Color Palette & Variables --- */
         :root {
+            --deep-navy: #1F2F44; /* Added for highest contrast against waves */
             --dark-blue: #4B5970;
             --mid-blue: #8DACBF;
             --light-blue: #B6D5ED;
@@ -33,7 +34,9 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: var(--dark-blue);
+            color: var(--deep-navy);
+            /* Soft, elegant white glow ensures visibility over dark wave patches */
+            text-shadow: 0px 2px 20px rgba(255, 255, 255, 1), 0px 0px 8px rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -68,7 +71,7 @@
             object-fit: cover;
         }
 
-        /* --- Layout & Typography (The Floating Card) --- */
+        /* --- Layout & Typography (Directly on Video) --- */
         .invitation-wrapper {
             position: relative;
             z-index: 1;
@@ -79,12 +82,7 @@
         }
 
         .invitation-card {
-            background: rgba(255, 253, 245, 0.85); /* Semi-transparent ivory */
-            backdrop-filter: blur(12px); /* Glassmorphism effect */
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            /* Panel styling removed */
             max-width: 900px;
             width: 100%;
             padding: 0 0 60px 0;
@@ -94,7 +92,7 @@
         .section-container {
             padding: 60px 40px;
             text-align: center;
-            border-bottom: 1px solid rgba(166, 166, 166, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .section-container:last-child {
@@ -126,13 +124,14 @@
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             letter-spacing: 2px;
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight: 700;
         }
 
         .hero h2 {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             margin-bottom: 20px;
-            color: var(--mid-blue);
+            color: var(--deep-navy);
+            font-weight: 700;
         }
 
         .hero p {
@@ -140,7 +139,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin-top: 20px;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         /* --- Our Moments Section (8 Photos Grid) --- */
@@ -156,7 +155,8 @@
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.8);
             transition: transform 0.3s ease;
         }
 
@@ -168,8 +168,8 @@
         .section-title {
             font-size: 2.2rem;
             margin-bottom: 40px;
-            font-weight: 500;
-            color: var(--dark-blue);
+            font-weight: 700;
+            color: var(--deep-navy);
         }
 
         .details-grid {
@@ -186,34 +186,35 @@
         }
 
         .detail-icon {
-            width: 32px;
-            height: 32px;
-            fill: var(--mid-blue);
+            width: 36px;
+            height: 36px;
+            fill: var(--deep-navy);
             margin-bottom: 15px;
+            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.9));
         }
 
         .detail-text {
             font-size: 1.1rem;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         .detail-label {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 8px;
             font-weight: 700;
-            color: var(--mid-blue);
+            color: var(--deep-navy);
         }
 
         /* --- Location Map Section --- */
         .map-container {
             margin-top: 30px;
-            border: 1px solid var(--light-grey);
+            border: 2px solid #FFFFFF;
             padding: 8px;
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .map-container iframe {
@@ -221,13 +222,14 @@
             height: 350px;
             border: 0;
             display: block;
-            filter: grayscale(20%) contrast(90%);
+            filter: grayscale(10%) contrast(90%);
         }
 
         /* --- Dress Code Section --- */
         .dress-code-text {
             font-size: 1.2rem;
             margin-bottom: 40px;
+            font-weight: 700;
         }
 
         .palette-grid {
@@ -248,14 +250,15 @@
             height: 100px;
             border-radius: 30px;
             margin-bottom: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 2px solid rgba(255,255,255,0.8);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .swatch-hex {
             font-size: 0.75rem;
-            font-weight: 400;
+            font-weight: 700;
             letter-spacing: 1px;
-            color: var(--dark-grey);
+            color: var(--deep-navy);
         }
 
         /* Swatch Colors from image */
@@ -268,7 +271,7 @@
         /* --- RSVP Section --- */
         .btn {
             display: inline-block;
-            background-color: var(--dark-blue);
+            background-color: var(--deep-navy);
             color: #FFFFFF;
             padding: 16px 45px;
             text-decoration: none;
@@ -279,17 +282,21 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             font-family: var(--font-body);
+            text-shadow: none; /* Removes the white glow for button text */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .btn:hover {
-            background-color: var(--mid-blue);
+            background-color: var(--dark-blue);
         }
 
         .deadline {
             margin-top: 20px;
             font-size: 0.95rem;
             font-style: italic;
-            color: var(--dark-grey);
+            font-weight: 700;
+            color: var(--deep-navy);
         }
 
         /* --- Responsive Adjustments --- */
@@ -316,7 +323,7 @@
         </video>
     </div>
 
-    <!-- Main Content wrapped in a Floating Glass Card for ultimate elegance and readability -->
+    <!-- Main Content -->
     <div class="invitation-wrapper">
         <div class="invitation-card">
 
@@ -362,7 +369,7 @@
                             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                         </svg>
                         <div class="detail-label">Time</div>
-                        <div class="detail-text">6:00 PM <br><span style="font-size: 0.85rem; color: var(--dark-grey);">(Celebrations begin)</span></div>
+                        <div class="detail-text">6:00 PM <br><span style="font-size: 0.85rem;">(Celebrations begin)</span></div>
                     </div>
 
                     <div class="detail-item">
@@ -370,7 +377,7 @@
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
                         <div class="detail-label">Where</div>
-                        <div class="detail-text">Antalya, Turkey <br><span style="font-size: 0.85rem; color: var(--dark-grey);">(On a Yacht)</span></div>
+                        <div class="detail-text">Antalya, Turkey <br><span style="font-size: 0.85rem;">(On a Yacht)</span></div>
                     </div>
 
                 </div>

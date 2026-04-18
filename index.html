@@ -34,9 +34,10 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: var(--deep-navy);
-            /* Soft, elegant white glow ensures visibility over dark wave patches */
-            text-shadow: 0px 2px 20px rgba(255, 255, 255, 1), 0px 0px 8px rgba(255, 255, 255, 0.8);
+            color: #FFFFFF;
+            /* Very thin black outline and soft shadow for depth */
+            -webkit-text-stroke: 0.5px #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -130,7 +131,6 @@
         .hero h2 {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             margin-bottom: 20px;
-            color: var(--deep-navy);
             font-weight: 700;
         }
 
@@ -169,7 +169,6 @@
             font-size: 2.2rem;
             margin-bottom: 40px;
             font-weight: 700;
-            color: var(--deep-navy);
         }
 
         .details-grid {
@@ -188,9 +187,9 @@
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: var(--deep-navy);
+            fill: #FFFFFF;
             margin-bottom: 15px;
-            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.9));
+            filter: drop-shadow(0px 0px 1px #000) drop-shadow(1px 1px 2px rgba(0,0,0,0.6));
         }
 
         .detail-text {
@@ -204,7 +203,6 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
             font-weight: 700;
-            color: var(--deep-navy);
         }
 
         /* --- Location Map Section --- */
@@ -258,7 +256,6 @@
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 1px;
-            color: var(--deep-navy);
         }
 
         /* Swatch Colors from image */
@@ -283,6 +280,7 @@
             margin-top: 20px;
             font-family: var(--font-body);
             text-shadow: none; /* Removes the white glow for button text */
+            -webkit-text-stroke: 0; /* Keeps button text clean without outline */
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border: 1px solid rgba(255,255,255,0.3);
         }
@@ -296,7 +294,6 @@
             font-size: 0.95rem;
             font-style: italic;
             font-weight: 700;
-            color: var(--deep-navy);
         }
 
         /* --- Responsive Adjustments --- */

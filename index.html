@@ -34,10 +34,10 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: #FFFFFF;
-            /* Very thin black outline and soft shadow for depth */
-            -webkit-text-stroke: 0.5px #000000;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            color: var(--dark-blue);
+            /* Thin white outline and soft white shadow to stand out against waves */
+            -webkit-text-stroke: 0.5px #FFFFFF;
+            text-shadow: 0px 2px 10px rgba(255, 255, 255, 0.9), 1px 1px 2px rgba(255,255,255,0.8);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -187,9 +187,9 @@
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: #FFFFFF;
+            fill: var(--dark-blue);
             margin-bottom: 15px;
-            filter: drop-shadow(0px 0px 1px #000) drop-shadow(1px 1px 2px rgba(0,0,0,0.6));
+            filter: drop-shadow(0px 0px 3px #FFFFFF) drop-shadow(1px 1px 2px rgba(255,255,255,0.8));
         }
 
         .detail-text {
@@ -268,7 +268,7 @@
         /* --- RSVP Section --- */
         .btn {
             display: inline-block;
-            background-color: var(--deep-navy);
+            background-color: var(--dark-blue);
             color: #FFFFFF;
             padding: 16px 45px;
             text-decoration: none;
@@ -286,7 +286,7 @@
         }
 
         .btn:hover {
-            background-color: var(--dark-blue);
+            background-color: var(--mid-blue);
         }
 
         .deadline {
@@ -398,23 +398,23 @@
                 <div class="palette-grid">
                     <div class="swatch-container">
                         <div class="swatch c-dark-blue"></div>
-                        <span class="swatch-hex">#4B5970</span>
+                        <span class="swatch-hex">Slate Blue</span>
                     </div>
                     <div class="swatch-container">
                         <div class="swatch c-mid-blue"></div>
-                        <span class="swatch-hex">#8DACBF</span>
+                        <span class="swatch-hex">Dusty Blue</span>
                     </div>
                     <div class="swatch-container">
                         <div class="swatch c-light-blue"></div>
-                        <span class="swatch-hex">#B6D5ED</span>
+                        <span class="swatch-hex">Powder Blue</span>
                     </div>
                     <div class="swatch-container">
                         <div class="swatch c-dark-grey"></div>
-                        <span class="swatch-hex">#A6A6A6</span>
+                        <span class="swatch-hex">Stone Grey</span>
                     </div>
                     <div class="swatch-container">
                         <div class="swatch c-light-grey"></div>
-                        <span class="swatch-hex">#D9D9D9</span>
+                        <span class="swatch-hex">Cloud Grey</span>
                     </div>
                 </div>
             </section>

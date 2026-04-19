@@ -13,11 +13,11 @@
     <style>
         /* --- Color Palette & Variables --- */
         :root {
-            --matte-black: #1A1A1A; /* Added matte black for text */
-            --deep-navy: #1F2F44; /* Added for highest contrast against waves */
+            --matte-black: #1A1A1A; 
+            --deep-navy: #1F2F44; 
             --dark-blue: #4B5970;
             --mid-blue: #8DACBF;
-            --light-blue: #B6D5ED;
+            --light-blue: #B6D5ED; /* Target text color */
             --dark-grey: #A6A6A6;
             --light-grey: #D9D9D9;
             --font-heading: 'Playfair Display', serif;
@@ -35,7 +35,9 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: var(--matte-black);
+            color: var(--light-blue);
+            /* Dark shadow to help light blue text stand out against the background video */
+            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.8), 0px 1px 3px rgba(0, 0, 0, 0.6);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -81,7 +83,6 @@
         }
 
         .invitation-card {
-            /* Panel styling removed */
             max-width: 900px;
             width: 100%;
             padding: 0 0 60px 0;
@@ -91,7 +92,7 @@
         .section-container {
             padding: 60px 40px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .section-container:last-child {
@@ -153,13 +154,51 @@
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border: 2px solid rgba(255,255,255,0.8);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; /* Indicates it can be clicked */
         }
 
         .gallery-item:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
+            border-color: var(--light-blue);
+        }
+
+        /* --- Lightbox / Image Enlarge Overlay --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 2px solid #fff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-family: sans-serif;
+            cursor: pointer;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         /* --- Details Section --- */
@@ -185,8 +224,9 @@
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: var(--matte-black);
+            fill: var(--light-blue);
             margin-bottom: 15px;
+            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6));
         }
 
         .detail-text {
@@ -205,11 +245,11 @@
         /* --- Location Map Section --- */
         .map-container {
             margin-top: 30px;
-            border: 2px solid #FFFFFF;
+            border: 2px solid var(--light-blue);
             padding: 8px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .map-container iframe {
@@ -245,8 +285,8 @@
             height: 100px;
             border-radius: 30px;
             margin-bottom: 10px;
-            border: 2px solid rgba(255,255,255,0.8);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .swatch-hex {
@@ -265,8 +305,8 @@
         /* --- RSVP Section --- */
         .btn {
             display: inline-block;
-            background-color: var(--matte-black);
-            color: #FFFFFF;
+            background-color: var(--light-blue);
+            color: var(--deep-navy); /* Dark text for readability on light blue */
             padding: 16px 45px;
             text-decoration: none;
             font-size: 1rem;
@@ -276,14 +316,16 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             font-family: var(--font-body);
-            text-shadow: none; /* Removes the white glow for button text */
-            -webkit-text-stroke: 0; /* Keeps button text clean without outline */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 700;
+            text-shadow: none; /* Removes shadow from button text */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid var(--light-blue);
         }
 
         .btn:hover {
-            background-color: #333333;
+            background-color: var(--deep-navy);
+            color: var(--light-blue);
+            border-color: var(--light-blue);
         }
 
         .deadline {
@@ -317,6 +359,12 @@
         </video>
     </div>
 
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Photo">
+    </div>
+
     <!-- Main Content -->
     <div class="invitation-wrapper">
         <div class="invitation-card">
@@ -333,7 +381,6 @@
             <section class="section-container">
                 <h2 class="section-title italic">Our Moments</h2>
                 <div class="gallery-grid">
-                    <!-- Updated extensions for specified photos to .JPG -->
                     <img src="photo1.JPG" alt="Moment 1" class="gallery-item">
                     <img src="photo2.JPG" alt="Moment 2" class="gallery-item">
                     <img src="photo3.jpg" alt="Moment 3" class="gallery-item">
@@ -423,6 +470,26 @@
 
         </div>
     </div>
+
+    <!-- Script to handle Lightbox logic -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        // Open Lightbox on image click
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = this.src;
+            });
+        });
+
+        // Close Lightbox on click anywhere in the overlay
+        lightbox.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>

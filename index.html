@@ -35,9 +35,7 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: var(--light-blue);
-            /* Dark shadow to help light blue text stand out against the background video */
-            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.8), 0px 1px 3px rgba(0, 0, 0, 0.6);
+            color: #FFFFFF;
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -224,9 +222,8 @@
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: var(--light-blue);
+            fill: #FFFFFF;
             margin-bottom: 15px;
-            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6));
         }
 
         .detail-text {
@@ -245,7 +242,7 @@
         /* --- Location Map Section --- */
         .map-container {
             margin-top: 30px;
-            border: 2px solid var(--light-blue);
+            border: 2px solid #FFFFFF;
             padding: 8px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
@@ -305,8 +302,8 @@
         /* --- RSVP Section --- */
         .btn {
             display: inline-block;
-            background-color: var(--light-blue);
-            color: var(--deep-navy); /* Dark text for readability on light blue */
+            background-color: transparent;
+            color: #FFFFFF; 
             padding: 16px 45px;
             text-decoration: none;
             font-size: 1rem;
@@ -317,15 +314,12 @@
             margin-top: 20px;
             font-family: var(--font-body);
             font-weight: 700;
-            text-shadow: none; /* Removes shadow from button text */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 1px solid var(--light-blue);
+            border: 1px solid #FFFFFF;
         }
 
         .btn:hover {
-            background-color: var(--deep-navy);
-            color: var(--light-blue);
-            border-color: var(--light-blue);
+            background-color: #FFFFFF;
+            color: var(--deep-navy);
         }
 
         .deadline {

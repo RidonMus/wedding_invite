@@ -13,6 +13,7 @@
     <style>
         /* --- Color Palette & Variables --- */
         :root {
+            --matte-black: #1A1A1A; /* Added matte black for text */
             --deep-navy: #1F2F44; /* Added for highest contrast against waves */
             --dark-blue: #4B5970;
             --mid-blue: #8DACBF;
@@ -34,10 +35,9 @@
             font-family: var(--font-body);
             font-weight: 400;
             background-color: #f4f4f4;
-            color: var(--dark-blue);
-            /* Thin white outline and soft white shadow to stand out against waves */
-            -webkit-text-stroke: 0.5px #FFFFFF;
-            text-shadow: 0px 2px 10px rgba(255, 255, 255, 0.9), 1px 1px 2px rgba(255,255,255,0.8);
+            color: var(--matte-black);
+            /* Soft diffused white glow for subtle readability */
+            text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.9), 0px 0px 3px rgba(255, 255, 255, 0.5);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -187,9 +187,9 @@
         .detail-icon {
             width: 36px;
             height: 36px;
-            fill: var(--dark-blue);
+            fill: var(--matte-black);
             margin-bottom: 15px;
-            filter: drop-shadow(0px 0px 3px #FFFFFF) drop-shadow(1px 1px 2px rgba(255,255,255,0.8));
+            filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8));
         }
 
         .detail-text {
@@ -268,7 +268,7 @@
         /* --- RSVP Section --- */
         .btn {
             display: inline-block;
-            background-color: var(--dark-blue);
+            background-color: var(--matte-black);
             color: #FFFFFF;
             padding: 16px 45px;
             text-decoration: none;
@@ -286,7 +286,7 @@
         }
 
         .btn:hover {
-            background-color: var(--mid-blue);
+            background-color: #333333;
         }
 
         .deadline {

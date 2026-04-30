@@ -256,6 +256,46 @@
             filter: grayscale(10%) contrast(90%);
         }
 
+        /* --- Additional Sections (Itinerary & Registry) --- */
+        .invitation-text {
+            margin: 25px 0;
+            font-size: 1.15rem;
+            max-width: 600px;
+            font-weight: 400;
+            line-height: 1.8;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .itinerary-list {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .itinerary-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(31, 47, 68, 0.2); /* Deep navy with opacity */
+            padding: 15px 0;
+        }
+
+        .itinerary-item:last-child {
+            border-bottom: none;
+        }
+
+        .itinerary-item .time {
+            font-weight: 700;
+            color: var(--deep-navy);
+            width: 120px;
+        }
+
+        .itinerary-item .event {
+            flex-grow: 1;
+            font-weight: 400;
+            text-align: right;
+        }
+
         /* --- Dress Code Section --- */
         .dress-code-text {
             font-size: 1.2rem;
@@ -366,7 +406,10 @@
             <section class="hero section-container">
                 <h2 class="fade-in-up italic">Save the Date</h2>
                 <h1 class="fade-in-up delay-1">Nodir & Zukhra</h1>
-                <p class="fade-in-up delay-2">July 3, 2026</p>
+                <div class="fade-in-up delay-2 invitation-text">
+                    We joyfully invite you to share in our happiness as we unite in marriage. Join us for an unforgettable evening of love, laughter, and a gentle coastal breeze.
+                </div>
+                <p class="fade-in-up delay-3">July 3, 2026</p>
                 <p class="fade-in-up delay-3" style="font-size: 0.9rem;">Antalya, Turkey</p>
             </section>
 
@@ -417,13 +460,36 @@
                 </div>
             </section>
 
+            <!-- Itinerary Section -->
+            <section class="section-container">
+                <h2 class="section-title italic">Itinerary</h2>
+                <div class="itinerary-list">
+                    <div class="itinerary-item">
+                        <span class="time">6:00 PM</span>
+                        <span class="event">Welcome & Boarding</span>
+                    </div>
+                    <div class="itinerary-item">
+                        <span class="time">6:30 PM</span>
+                        <span class="event">Sunset Ceremony</span>
+                    </div>
+                    <div class="itinerary-item">
+                        <span class="time">7:30 PM</span>
+                        <span class="event">Dinner & Toasts</span>
+                    </div>
+                    <div class="itinerary-item">
+                        <span class="time">9:00 PM</span>
+                        <span class="event">Dancing under the Stars</span>
+                    </div>
+                </div>
+            </section>
+
             <!-- Location / Map Section -->
             <section class="section-container">
                 <h2 class="section-title italic">Location</h2>
                 <p class="detail-text" style="margin-bottom: 15px;">Boarding at Antalya Yeni Liman (Balıkçı Barınağı)</p>
                 <div class="map-container">
-                    <!-- Google Maps Embed centered with a pin on specified coordinates -->
-                    <iframe src="https://maps.google.com/maps?q=36.80091057552041,30.578634677899124&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- Google Maps Embed centered with a pin on specified Plus Code -->
+                    <iframe src="https://maps.google.com/maps?q=RH2H%2B8F%20Konyaalt%C4%B1,%20Antalya,%20T%C3%BCrkiye&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </section>
 
@@ -450,6 +516,14 @@
                         <span class="swatch-hex">Cloud Grey</span>
                     </div>
                 </div>
+            </section>
+
+            <!-- Registry / Gifting Section -->
+            <section class="section-container">
+                <h2 class="section-title italic">Gifts</h2>
+                <p class="detail-text" style="max-width: 650px; margin: 0 auto; font-weight: 400; line-height: 1.8;">
+                    Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wishing well will be available at the reception to help us build our future together.
+                </p>
             </section>
 
             <!-- RSVP Section -->
